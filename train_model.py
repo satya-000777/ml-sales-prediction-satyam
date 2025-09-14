@@ -1,6 +1,7 @@
 import pickle
 from sklearn.linear_model import LinearRegression
 import numpy as np
+
 # Dummy training data: X = marketing spend, y = sales
 X = np.array([[100], [200], [300], [400], [500]])
 y = np.array([10, 20, 30, 40, 50])
