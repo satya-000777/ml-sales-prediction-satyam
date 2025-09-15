@@ -28,6 +28,17 @@ steps:
         '--set-env-vars', 'VERSION=$SHORT_SHA'
       ]
     id: 'Deploy to Cloud Run'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - deploy
+      - releases
+      - create
+      - ml-sales-release-$(date +%Y%m%d%H%M%S)
+      - --delivery-pipeline=ml-sales-pipeline-satyam
+      - --region=us-central1
+      - --skaffold-file=deploy/skaffold.yaml
+      - --source=deploy
+    id: 'Triggered release'
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
